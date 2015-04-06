@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+PYTHONPATH=test/py unit2 discover -s test/py_test

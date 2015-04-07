@@ -1,5 +1,5 @@
-command! RutFile call <SID>Rut(expand('%:p'))
-command! RutAll call <SID>Rut('')
+command! RutFile call <SID>RutRun(expand('%:p'))
+command! RutAll call <SID>RutRunAll()
 command! RutOther exe ":e " . <SID>OtherPath(expand('%:p'))
 command! RutOtherSplit exe ":sp " . <SID>OtherPath(expand('%:p'))
 
@@ -43,19 +43,18 @@ elseif !exists('g:rut_projects')
     let g:rut_projects = []
 endif
 
-" Run tests.
-" fullpath
-"     Absolute path to a file or directory containing unittests.
-"     If the empty string ('') is given the runner is free to discover
-"     whatever tests it wants, which is most likely all of them.
-function! <SID>Rut(fullpath)
+
+function! <SID>RutRunAll()
+    cal <SID>RutRun(s:project()['test_dir'])
+endfunction
+
+" relpath: path to a source or test file, relative to the repo root.
+function! <SID>RutRun(relpath)
     let project = s:project()
-    if a:fullpath == ''
-        let path = project['test_dir']
-    elseif !s:isUnittest(a:fullpath)
-        let path = <SID>OtherPath(a:fullpath)
+    if !s:isUnittest(a:relpath)
+        let path = <SID>OtherPath(a:relpath)
     else
-        let path = a:fullpath
+        let path = a:relpath
     endif
     let &l:makeprg = join([project['runner'], path], ' ')
     echom &makeprg

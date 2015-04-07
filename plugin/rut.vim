@@ -146,7 +146,7 @@ function! s:repoRoot()
     while 1
         let metadir = matchstr(globpath(dir, '.*', 1), metadir_pattern)
         if metadir != ''
-            return dir . metadir
+            return dir
         endif
         let parent = fnamemodify(dir, ':h')
         if parent ==# dir

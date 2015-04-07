@@ -23,23 +23,7 @@ if !exists('g:rut_openQuickFix')
     let g:rut_openQuickFix = 0
 endif
 
-if exists('g:rut_test') && g:rut_test
-    let g:rut_projects = [{
-      \'pattern': 'NOMATCH/rut.vim$',
-      \'test_dir': 'test/py/tests',
-      \'source2unit': ['\v.*test/py/?(.*)/([^/]*)', 'test/py/tests/\1/test_\2'],
-      \'unit2source': ['\v.*tests/?(.*)/test_([^/]*)', 'test/py/\1/\2'],
-      \'runner': 'PYTHONPATH=test/py nosetests',
-      \'errorformat': '%C %.%#,%A  File "%f"\, line %l%.%#,%Z%[%^ ]%\@=%m',
-    \}, {
-      \'pattern': '/rut.vim$',
-      \'test_dir': 'test/rb_test',
-      \'source2unit': ['\v.*test/rb/?(.*)/([^/]*).rb', 'test/rb_test/rspec/\1/\2_spec.rb'],
-      \'unit2source': ['\v.*test/rb_test/rspec/?(.*)/([^/]*)_spec.rb', 'test/rb/\1/\2.rb'],
-      \'runner': 'RUBYLIB=test/rb rspec',
-      \'errorformat': '     # %f:%l:%m',
-    \}]
-elseif !exists('g:rut_projects')
+if !exists('g:rut_projects')
     let g:rut_projects = []
 endif
 

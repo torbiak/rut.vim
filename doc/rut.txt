@@ -6,6 +6,7 @@ Contents
     Introduction            |rut-intro|
     Installation            |rut-installation|
     Usage                   |rut-usage|
+    Options                 |rut-options|
     Command Mappings        |rut-mappings|
     Commands                |rut-commands|
     Acknowledgements        |rut-acknowledgements|

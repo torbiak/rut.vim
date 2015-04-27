@@ -26,6 +26,12 @@ function! AssertEqual(a, b)
     endif
 endfunction
 
+function! WaitMaybe()
+    if exists('*jobwait') && g:rut_job_id != 0
+        cal jobwait([g:rut_job_id])
+    endif
+endfunction
+
 function! RutRunTests()
     let out = ''
     redir => out
@@ -85,6 +91,7 @@ function! RutTest_RutFile_sets_quickfix_from_tests_using_nose()
     e test/py/toplevel.py
     cal setqflist([])
     silent! RutFile
+    cal WaitMaybe()
     cal AssertEqual(ValidQuickFixErrors(), 1)
 endfunction
 
@@ -92,6 +99,7 @@ function! RutTest_RutAll_set_quickfix_using_nose()
     cal RutSetupNose()
     cal setqflist([])
     silent! RutAll
+    cal WaitMaybe()
     cal AssertEqual(ValidQuickFixErrors(), 3)
 endfunction
 
@@ -100,6 +108,7 @@ function! RutTest_RutFile_sets_quickfix_from_source_using_rspec()
     e test/rb/error.rb
     cal setqflist([])
     silent! RutFile
+    cal WaitMaybe()
     cal AssertEqual(ValidQuickFixErrors(), 2)
 endfunction
 
@@ -107,5 +116,6 @@ function! RutTest_RutAll_set_quickfix_using_rspec()
     cal RutSetupRspec()
     cal setqflist([])
     silent! RutAll
+    cal WaitMaybe()
     cal AssertEqual(ValidQuickFixErrors(), 4)
 endfunction

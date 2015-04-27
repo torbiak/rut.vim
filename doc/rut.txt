@@ -29,6 +29,11 @@ file and its tests.
 The root directory of the project is determined by finding a version control
 meta-directory, like .git/, .hg/, etc.
 
+Neovim's async |job-control| features are used when available unless
+|g:rut_async| is set to 0. If a multiline errorformat pattern is used output is
+buffered so that errorformat can match as expected; otherwise output is
+streamed to the quickfix list.
+
 ==============================================================================
 Installation                                                *rut-installation*
 
@@ -106,6 +111,13 @@ Options                                                          *rut-options*
 
 g:rut_openQuickFix (default: 0)                           *g:rut_openQuickFix*
                      If 1, open the quickfix window when tests fail.
+
+g:rut_async (default: 1)                                         *g:rut_async*
+                     If 1, use neovim's |job-control| features when available.
+
+g:rut_job_id                                                    *g:rut_job_id*
+                     Use this to kill a neovim job that's gone out-of-control.
+                     And you're right, it's not an option.
 
 ==============================================================================
 Mappings                                                        *rut-mappings*

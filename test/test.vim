@@ -16,7 +16,7 @@ function! RutSetupRspec()
       \'source2unit': ['\v.*test/rb/?(.*)/([^/]*).rb', 'test/rb_test/rspec/\1/\2_spec.rb'],
       \'unit2source': ['\v.*test/rb_test/rspec/?(.*)/([^/]*)_spec.rb', 'test/rb/\1/\2.rb'],
       \'runner': 'RUBYLIB=test/rb rspec',
-      \'errorformat': '     # %f:%l:%m',
+      \'errorformat': '%A %#Failure/Error:%.%#,%Z %## %f:%l:%m,%C%m,%C%.%#',
     \}]
 endfunction
 

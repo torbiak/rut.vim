@@ -95,7 +95,7 @@ Or for a Ruby project using RSpec: >
       \'source2unit': ['\v.*/rb_proj/?(.*)/([^/]*).rb', 'spec/\1/\2_spec.rb'],
       \'unit2source': ['\v.*/spec/(.*)/([^/]*)_spec.rb', 'rb_proj/\1/\2.rb'],
       \'runner': 'rspec',
-      \'errorformat': '     # %f:%l:%m',
+      \'errorformat': '%A %#Failure/Error:%.%#,%Z %## %f:%l:%m,%C%m,%C%.%#',
     \}]
 <
 
